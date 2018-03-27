@@ -117,7 +117,7 @@ resource "aws_subnet" "private" {
   cidr_block        = "${var.private_subnets[count.index]}"
   availability_zone = "${element(var.azs, count.index)}"
 
-  tags = "${merge(var.tags, var.private_subnet_tags, map("Name", format("%s-private-%s", var.name, element(var.azs, count.index))))}"
+  tags = "${merge(var.tags, var.private_subnet_tags, map("Name", format("%s-private-%d-%s", var.name, count.index + 1, element(var.azs, count.index))))}"
 }
 
 ##################
